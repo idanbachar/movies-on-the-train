@@ -8,8 +8,7 @@ export default function MoviesPage() {
 
     return (
         <>
-            <h1>Movies</h1>
-
+            <h1 align="center">Movies On The Train</h1>
             <div className="container">
                 {movies.map(movie => {
                     return (

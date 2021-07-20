@@ -11,7 +11,7 @@ export default function App() {
   const MOVIES_API = "https://api.themoviedb.org/3/movie/upcoming?api_key=c1dc0c4c242380dce80741f82a86c998&language=en-US&page=1";
   const dispatch = useDispatch();
 
-  const getMovies = async () => {
+  const fetchMovies = async () => {
 
     const res = await fetch(MOVIES_API);
     const data = await res.json();
@@ -23,7 +23,14 @@ export default function App() {
   }
 
   useEffect(() => {
-    getMovies();
+
+    if (sessionStorage.key("movies") === null)
+      fetchMovies();
+    else {
+      dispatch({
+        type: "GET_SESSION"
+      })
+    }
   }, [])
 
   return (

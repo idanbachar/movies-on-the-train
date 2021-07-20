@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import MovieCardDetailed from '../components/Movie/MovieCardDetailed/MovieCardDetailed';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function DetailsPage() {
 
@@ -28,7 +29,10 @@ export default function DetailsPage() {
 
     return (
         <>
-            <h1>Details</h1>
+            <h1 align="center">Details</h1>
+            <Link to="/">
+                <h3 className="btn btn-success">Back --></h3>
+            </Link>
             <div className="container">
                 {movie !== null ?
                     <MovieCardDetailed
