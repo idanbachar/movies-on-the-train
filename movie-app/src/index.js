@@ -9,7 +9,6 @@ import AllReducers from './reducers/AllReducers';
 
 const store = createStore(AllReducers);
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

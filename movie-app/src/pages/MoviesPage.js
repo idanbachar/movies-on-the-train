@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 import Movie from '../components/Movie/Movie';
+
 
 export default function MoviesPage() {
 
@@ -9,15 +9,20 @@ export default function MoviesPage() {
 
     return (
         <>
-            {movies.map(movie => {
-                return (
-                    <Movie
-                        title={movie.title}
-                        image={movie.image}
-                        year={movie.year}
-                    />
-                )
-            })}
+        <h1>Movies</h1>
+                
+            <div className="container">
+                {movies.map(movie => {
+                    return (
+                        <Movie
+                            title={movie.title}
+                            description={movie.overview}
+                            image={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
+                            release_date={movie.release_date}
+                        />
+                    )
+                })}
+            </div>
         </>
     )
 }
