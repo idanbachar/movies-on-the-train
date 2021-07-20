@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import MoviesPage from './pages/MoviesPage';
-import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import MoviesPage from './pages/MoviesPage';
+import DetailsPage from './pages/DetailsPage';
+import EditPage from './pages/EditPage';
+import './App.css';
 
 export default function App() {
 
+  const MOVIES_API = "https://api.themoviedb.org/3/movie/upcoming?api_key=c1dc0c4c242380dce80741f82a86c998&language=en-US&page=1";
   const dispatch = useDispatch();
 
   const getMovies = async () => {
 
-    const res = await fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=c1dc0c4c242380dce80741f82a86c998&language=en-US&page=1")
+    const res = await fetch(MOVIES_API);
     const data = await res.json();
+
     dispatch({
       type: "INIT",
       payload: data.results
@@ -20,21 +24,26 @@ export default function App() {
 
   useEffect(() => {
     getMovies();
-
   }, [])
 
   return (
     <div className="App">
-
       <BrowserRouter>
         <Switch>
           <Route
-            path="/Movies"
+            path="/"
             component={MoviesPage}
+            exact />
+          <Route
+            path="/details/:movieId"
+            component={DetailsPage}
+            exact />
+          <Route
+            path="/edit/:movieId"
+            component={EditPage}
             exact />
         </Switch>
       </BrowserRouter>
-
     </div>
   );
 }

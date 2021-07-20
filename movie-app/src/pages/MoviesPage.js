@@ -1,20 +1,20 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Movie from '../components/Movie/Movie';
-
+import MovieCard from '../components/Movie/MovieCard/MovieCard';
 
 export default function MoviesPage() {
 
-    const movies = useSelector(state => state.Movies);
+    const movies = useSelector(state => state.movies);
 
     return (
         <>
-        <h1>Movies</h1>
-                
+            <h1>Movies</h1>
+
             <div className="container">
                 {movies.map(movie => {
                     return (
-                        <Movie
+                        <MovieCard
+                            id={movie.id}
                             title={movie.title}
                             description={movie.overview}
                             image={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
