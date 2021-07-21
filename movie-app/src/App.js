@@ -5,6 +5,7 @@ import MoviesPage from './pages/MoviesPage';
 import DetailsPage from './pages/DetailsPage';
 import EditPage from './pages/EditPage';
 import './App.css';
+import CreatePage from './pages/CreatePage';
 
 export default function App() {
 
@@ -15,6 +16,11 @@ export default function App() {
 
     const res = await fetch(MOVIES_API);
     const data = await res.json();
+    let results = data.results;
+    for (let i = 0; i < results.length; i++) {
+      const posterPath = results[i].poster_path;
+      results[i].poster_path = `https://www.themoviedb.org/t/p/w220_and_h330_face/${posterPath}`;
+    }
 
     dispatch({
       type: "INIT",
@@ -48,6 +54,10 @@ export default function App() {
           <Route
             path="/edit/:movieId"
             component={EditPage}
+            exact />
+          <Route
+            path="/create"
+            component={CreatePage}
             exact />
         </Switch>
       </BrowserRouter>

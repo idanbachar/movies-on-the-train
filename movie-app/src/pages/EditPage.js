@@ -37,14 +37,14 @@ export default function EditPage() {
 
     return (
         <>
-            <h1 align="center">Edit</h1>
+            <h1 align="center">Edit Movie</h1>
             <div className="container">
                 {movie !== null ?
                     <Edit
                         id={movie.id}
                         title={movie.title}
                         description={movie.overview}
-                        image={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
+                        image={movie.poster_path}
                         release_date={movie.release_date}
                         handleEdit={handleEdit}
                     />

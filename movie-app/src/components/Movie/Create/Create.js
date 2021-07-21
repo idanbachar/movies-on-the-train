@@ -4,13 +4,13 @@ import Button from 'react-bootstrap/Button'
 import DatePicker from "react-datepicker";
 import { Link } from 'react-router-dom';
 
-export default function Edit(movie) {
+export default function Create({ handleCreate }) {
 
-    const [id, setId] = useState(movie.id);
-    const [title, setTitle] = useState(movie.title);
-    const [overview, setOverview] = useState(movie.description);
-    const [poster_path, setPosterPath] = useState(movie.image);
-    const [release_date, setReleaseDate] = useState(new Date(movie.release_date));
+    const [id, setId] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [image, setImage] = useState('');
+    const [release_date, setReleaseDate] = useState(new Date());
 
     return (
         <div className="detailed-card">
@@ -34,8 +34,8 @@ export default function Edit(movie) {
                             type="text"
                             as="textarea"
                             placeholder="Enter movie description"
-                            value={overview}
-                            onChange={(e) => setOverview(e.target.value)}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -44,8 +44,8 @@ export default function Edit(movie) {
                         <Form.Control
                             type="text"
                             placeholder="Enter movie cover image"
-                            value={poster_path}
-                            onChange={(e) => setPosterPath(e.target.value)}
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
                         />
                         <br />
                         <Form.Text className="text-muted">
@@ -53,7 +53,7 @@ export default function Edit(movie) {
                         </Form.Text>
                         <br />
                         <img
-                            src={poster_path}
+                            src={image}
                             alt={title}
                             width={150}
                         />
@@ -63,19 +63,19 @@ export default function Edit(movie) {
                         <br />
                         <DatePicker selected={release_date} onChange={(date) => setReleaseDate(date)} />
                     </Form.Group>
-                    <Button variant="primary" onClick={() => movie.handleEdit({
+                    <Button variant="primary" onClick={() => handleCreate({
                         id,
                         title,
-                        overview,
-                        poster_path,
-                        release_date: release_date.toISOString().split('T')[0]
+                        description,
+                        image,
+                        release_date
                     })}>
-                        Edit!
+                        Create!
                     </Button>
 
                     <Link
                         className="btn btn-danger"
-                        to={`/details/${id}`}>
+                        to="/">
                         Cancel
                     </Link>
                 </Form>
