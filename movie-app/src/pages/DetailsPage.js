@@ -29,10 +29,14 @@ export default function DetailsPage() {
 
     return (
         <>
-            <h1 align="center">Details</h1>
-            <Link to="/">
-                <h3 className="btn btn-success">Back --></h3>
-            </Link>
+            <h1 align="center">Movie Details</h1>
+            <div className="row">
+                <Link
+                    to="/"
+                    className="btn btn-danger">
+                    Back
+                </Link>
+            </div>
             <div className="container">
                 {movie !== null ?
                     <MovieCardDetailed

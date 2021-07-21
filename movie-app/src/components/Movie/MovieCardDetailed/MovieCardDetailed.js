@@ -7,7 +7,6 @@ export default function MovieCardDetailed({ id, title, description, image, relea
         <div className="detailed-card">
             <div className="card-body">
                 <img
-
                     src={image}
                     alt="rover" />
                 <h2>{title}</h2>

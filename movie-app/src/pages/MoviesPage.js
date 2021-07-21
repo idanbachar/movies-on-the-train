@@ -11,7 +11,7 @@ export default function MoviesPage() {
     return (
         <>
             <h1 align="center">Movies On The Train</h1>
-            <div class="row">
+            <div className="row">
                 <Link
                     to="/create"
                     className="btn btn-danger"

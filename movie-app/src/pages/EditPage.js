@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MovieCard from '../components/Movie/MovieCard/MovieCard';
 import { useParams } from 'react-router';
 import Edit from '../components/Movie/Edit/Edit';
+import { Redirect, useHistory } from 'react-router-dom';
 
 export default function EditPage() {
 
@@ -10,6 +11,7 @@ export default function EditPage() {
     const params = useParams();
     const movies = useSelector(state => state.movies);
     const [movie, setMovie] = useState(null);
+    const history = useHistory();
 
     const getCurrentMovie = () => {
 
@@ -26,6 +28,8 @@ export default function EditPage() {
             type: 'EDIT',
             payload: editedMovie
         })
+
+        history.push(`/details/${editedMovie.id}`);
     }
 
     useEffect(() => {
