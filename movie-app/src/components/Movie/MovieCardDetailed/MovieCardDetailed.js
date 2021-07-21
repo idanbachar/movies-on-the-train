@@ -29,7 +29,9 @@ export default function MovieCardDetailed({ id, title, description, image, relea
             <div className="card-body">
                 <img
                     src={image}
-                    alt="rover" />
+                    alt="rover"
+                    width="280px"
+                />
                 <h2>{title}</h2>
                 <p>{description}</p>
                 <div className="user">

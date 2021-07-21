@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Create from '../components/Movie/Create/Create';
+import MovieForm from '../components/Form/MovieForm';
 
 export default function CreatePage() {
 
@@ -21,7 +21,10 @@ export default function CreatePage() {
         <>
             <h1 align="center">Create Movie</h1>
             <div className="container">
-                <Create handleCreate={handleCreate} />
+                <MovieForm
+                    handler={handleCreate}
+                    titleLabel="Create"
+                />
             </div>
         </>
     )

@@ -3,14 +3,15 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import DatePicker from "react-datepicker";
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
-export default function Edit(movie) {
+export default function MovieForm({ handler, titleLabel, movie }) {
 
-    const [id, setId] = useState(movie.id);
-    const [title, setTitle] = useState(movie.title);
-    const [overview, setOverview] = useState(movie.description);
-    const [poster_path, setPosterPath] = useState(movie.image);
-    const [release_date, setReleaseDate] = useState(new Date(movie.release_date));
+    const [id, setId] = useState(movie === undefined ? uuidv4() : movie.id);
+    const [title, setTitle] = useState(movie === undefined ? '' : movie.title);
+    const [overview, setOverview] = useState(movie === undefined ? '' : movie.overview);
+    const [poster_path, setPosterPath] = useState(movie === undefined ? '' : movie.poster_path);
+    const [release_date, setReleaseDate] = useState(movie === undefined ? new Date() : new Date(movie.release_date));
 
     return (
         <div className="detailed-card">
@@ -63,16 +64,15 @@ export default function Edit(movie) {
                         <br />
                         <DatePicker selected={release_date} onChange={(date) => setReleaseDate(date)} />
                     </Form.Group>
-                    <Button variant="primary" onClick={() => movie.handleEdit({
+                    <Button variant="primary" onClick={() => handler({
                         id,
                         title,
                         overview,
                         poster_path,
                         release_date: release_date.toISOString().split('T')[0]
                     })}>
-                        Edit!
+                        {titleLabel}!
                     </Button>
-
                     <Link
                         className="btn btn-danger"
                         to={`/details/${id}`}>

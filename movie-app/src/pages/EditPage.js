@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import Edit from '../components/Movie/Edit/Edit';
 import { useHistory } from 'react-router-dom';
+import MovieForm from '../components/Form/MovieForm';
 
 export default function EditPage() {
 
@@ -43,13 +43,10 @@ export default function EditPage() {
             <h1 align="center">Edit Movie</h1>
             <div className="container">
                 {movie !== undefined ?
-                    <Edit
-                        id={movie.id}
-                        title={movie.title}
-                        description={movie.overview}
-                        image={movie.poster_path}
-                        release_date={movie.release_date}
-                        handleEdit={handleEdit}
+                    <MovieForm
+                        handler={handleEdit}
+                        titleLabel="Edit"
+                        movie={movie}
                     />
                     : null}
             </div>
