@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import RatingStars from '../RatingStars/RatingStars';
 import './MovieCard.css'
 
-export default function MovieCard({ id, title, description, image, release_date }) {
+export default function MovieCard({ id, title, description, image, release_date, ratingStarCount }) {
+
     return (
         <div className="card">
             <Link to={`/details/${id}`}>
@@ -12,6 +14,7 @@ export default function MovieCard({ id, title, description, image, release_date 
                 <div className="card-body">
                     <h4>{title}</h4>
                     <p>{description}</p>
+                    <RatingStars count={ratingStarCount} />
                     <div className="user">
                         <div className="card-info">
                             <small>Release date: {release_date}</small>

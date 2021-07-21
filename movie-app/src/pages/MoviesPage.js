@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import MovieCard from '../components/Movie/MovieCard/MovieCard';
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 export default function MoviesPage() {
@@ -28,6 +27,7 @@ export default function MoviesPage() {
                             description={movie.overview}
                             image={movie.poster_path}
                             release_date={movie.release_date}
+                            ratingStarCount={movie.ratingStars}
                         />
                     )
                 })}

@@ -4,6 +4,12 @@ const MoviesReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'INIT':
+            const { payload } = action;
+            for (let i = 0; i < payload.length; i++) {
+                const posterPath = payload[i].poster_path;
+                payload[i].poster_path = `https://www.themoviedb.org/t/p/w220_and_h330_face/${posterPath}`;
+                payload[i].ratingStars = 0;
+            }
             state = action.payload;
             sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
@@ -21,7 +27,7 @@ const MoviesReducer = (state = initialState, action) => {
         default:
             return state;
         case 'CREATE':
-            state.push(action.payload);                
+            state.push(action.payload);
             sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
     }
