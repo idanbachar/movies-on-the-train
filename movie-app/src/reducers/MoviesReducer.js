@@ -9,11 +9,13 @@ const MoviesReducer = (state = initialState, action) => {
                 const posterPath = payload[i].poster_path;
                 payload[i].poster_path = `https://www.themoviedb.org/t/p/w220_and_h330_face/${posterPath}`;
                 payload[i].ratingStars = 0;
+                payload[i].director = "";
+                payload[i].categories = ""
             }
             state = action.payload;
             sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
-        case 'GET_SESSION':
+        case 'GET_FROM_SESSION':
             state = JSON.parse(sessionStorage.getItem("movies"));
             return state;
         case 'EDIT':

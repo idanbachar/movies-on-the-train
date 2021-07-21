@@ -12,16 +12,23 @@ export default function MovieForm({ handler, titleLabel, movie }) {
     const [overview, setOverview] = useState(movie === undefined ? '' : movie.overview);
     const [poster_path, setPosterPath] = useState(movie === undefined ? '' : movie.poster_path);
     const [release_date, setReleaseDate] = useState(movie === undefined ? new Date() : new Date(movie.release_date));
+    const [director, setDirector] = useState(movie === undefined ? '' : movie.director);
+    const [categories, setCategories] = useState(movie === undefined ? '' : movie.categories);
+    const [ratingStarCount, setRatingStarCount] = useState(movie === undefined ? 0 : movie.ratingStars)
 
     const [validateTitleMessage, setValidateTitleMessage] = useState('');
     const [validatOverviewMessage, setValidateOverviewMessage] = useState('');
     const [validatePosterPathMessage, setValidatePosterPathMessage] = useState('');
+    const [validateDirectorMessage, setValidateDirectorMessage] = useState('');
+    const [validateCategoriesMessage, setValidateCategoriesMessage] = useState('');
 
     const validateFields = () => {
 
         let isTitleValid = false;
         let isOverviewValid = false;
         let isPosterPathValid = false;
+        let isCategoriesValid = false;
+        let isDirectorValid = false;
 
         if (title.length < 4) {
             isTitleValid = false;
@@ -47,16 +54,38 @@ export default function MovieForm({ handler, titleLabel, movie }) {
             isPosterPathValid = true;
             setValidatePosterPathMessage("");
         }
+        if (director.length < 4) {
+            isDirectorValid = false;
+            setValidateDirectorMessage("Director need to contain atleast 4 letters");
+        }
+        else {
+            isDirectorValid = true;
+            setValidateDirectorMessage("");
+        }
+
+        if (categories.length < 4) {
+            isCategoriesValid = false;
+            setValidateCategoriesMessage("Categories need to contain atleast 4 letters");
+        }
+        else {
+            isCategoriesValid = true;
+            setValidateCategoriesMessage("");
+        }
 
         if (isTitleValid &&
             isOverviewValid &&
-            isPosterPathValid) {
+            isPosterPathValid &&
+            isDirectorValid &&
+            isCategoriesValid) {
             handler({
                 id,
                 title,
                 overview,
                 poster_path,
-                release_date: release_date.toISOString().split('T')[0]
+                release_date: release_date.toISOString().split('T')[0],
+                director,
+                categories,
+                ratingStars: ratingStarCount
             })
         }
     };
@@ -91,6 +120,30 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Director</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter movie director"
+                            value={director}
+                            onChange={(e) => setDirector(e.target.value)}
+                        />
+                        <Form.Text className="text-muted">
+                            <font color="red">{validateDirectorMessage}</font>
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Categories</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter movie categories"
+                            value={categories}
+                            onChange={(e) => setCategories(e.target.value)}
+                        />
+                        <Form.Text className="text-muted">
+                            <font color="red">{validateDirectorMessage}</font>
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Image (from URL)</Form.Label>
                         <Form.Control
                             type="text"
@@ -106,11 +159,11 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                             Preview image:
                         </Form.Text>
                         <br />
-                        <img
+                        {/* <img
                             src={poster_path}
                             alt=""
                             width={150}
-                        />
+                        /> */}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Movie Release Date</Form.Label>

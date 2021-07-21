@@ -19,7 +19,7 @@ export default function EditPage() {
                 movie.id == params.movieId
             );
 
-        return current;
+        setMovie(current);
     }
 
     const handleEdit = (editedMovie) => {
@@ -33,8 +33,7 @@ export default function EditPage() {
 
     useEffect(() => {
 
-        const currentMovie = getCurrentMovie();
-        setMovie(currentMovie);
+        getCurrentMovie();
 
     }, [movies])
 

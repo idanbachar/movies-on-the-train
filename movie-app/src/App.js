@@ -9,11 +9,11 @@ import CreatePage from './pages/CreatePage';
 
 export default function App() {
 
-  const MOVIES_API = "https://api.themoviedb.org/3/movie/upcoming?api_key=c1dc0c4c242380dce80741f82a86c998&language=en-US&page=1";
+  const THE_MOVIE_DB_API = "c1dc0c4c242380dce80741f82a86c998";
   const dispatch = useDispatch();
 
   const fetchMovies = async () => {
-    const res = await fetch(MOVIES_API);
+    const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${THE_MOVIE_DB_API}`);
     const data = await res.json();
     let results = data.results;
 
@@ -29,7 +29,7 @@ export default function App() {
       fetchMovies();
     else {
       dispatch({
-        type: "GET_SESSION"
+        type: "GET_FROM_SESSION"
       })
     }
   }, [])

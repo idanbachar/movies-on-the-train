@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import RatingStars from '../RatingStars/RatingStars';
 import './MovieCardDetailed.css'
 
-export default function MovieCardDetailed({ id, title, description, image, release_date, ratingStarCount, isRatingEnabled }) {
+export default function MovieCardDetailed({ id, title, description, image, release_date, director, categories, ratingStarCount, isRatingEnabled }) {
 
     const dispatch = useDispatch();
 
@@ -15,6 +15,8 @@ export default function MovieCardDetailed({ id, title, description, image, relea
             overview: description,
             poster_path: image,
             release_date: release_date,
+            director: director,
+            categories: categories,
             ratingStars: ratingStars
         }
 
@@ -30,12 +32,15 @@ export default function MovieCardDetailed({ id, title, description, image, relea
                 <img
                     src={image}
                     alt="rover"
-                    width="280px"
+                    width="230px"
                 />
                 <h2>{title}</h2>
                 <p>{description}</p>
+                <p>Categories: <b>{categories}</b></p>
+                <p>Director: {director}</p>
                 <div className="user">
                     <div className="card-info">
+                        <h6>Press the stars to rate!</h6>
                         <RatingStars
                             count={ratingStarCount}
                             handleVote={handleVote}
