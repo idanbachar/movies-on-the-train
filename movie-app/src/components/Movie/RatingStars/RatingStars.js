@@ -27,16 +27,19 @@ export default function RatingStars({ count, handleVote, isRatingEnabled }) {
     return (
         <>
             <table>
-                <tr>
-                    {stars.map((star, index) =>
-                        <td>{isRatingEnabled ?
-                            <RatingStar
-                                isEmpty={star}
-                                handleVote={() => handleVote(index + 1)}
-                            /> :
-                            <RatingStar isEmpty={star} />}
-                        </td>)}
-                </tr>
+                <thead>
+                    <tr>
+                        {stars.map((star, index) =>
+                            <td>{isRatingEnabled ?
+                                <RatingStar
+                                    key={index}
+                                    isEmpty={star}
+                                    handleVote={() => handleVote(index + 1)}
+                                /> :
+                                <RatingStar isEmpty={star} />}
+                            </td>)}
+                    </tr>
+                </thead>
             </table>
 
         </>

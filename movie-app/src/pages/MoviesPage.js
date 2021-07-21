@@ -22,6 +22,7 @@ export default function MoviesPage() {
                 {movies.map(movie => {
                     return (
                         <MovieCard
+                            key={movie.id}
                             id={movie.id}
                             title={movie.title}
                             description={movie.overview}
