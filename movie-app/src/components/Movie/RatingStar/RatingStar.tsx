@@ -1,7 +1,13 @@
 import React from 'react';
 import { BsStar, BsStarFill } from 'react-icons/bs';
 
-export default function RatingStar({ isEmpty, handleVote }) {
+type props = {
+    key: number,
+    isEmpty: boolean,
+    handleVote: () => void
+}
+
+export default function RatingStar({ key, isEmpty, handleVote }: props) {
     return (
         <>
             {isEmpty ?

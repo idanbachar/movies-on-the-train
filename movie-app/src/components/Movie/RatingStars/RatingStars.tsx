@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import RatingStar from '../RatingStar/RatingStar';
 
-export default function RatingStars({ count, handleVote, isRatingEnabled }) {
+type props = {
+    count: number,
+    isRatingEnabled: boolean
+    handleVote: (starVote?: number) => void
+}
 
-    const [stars, setStars] = useState([]);
+export default function RatingStars({ count, isRatingEnabled, handleVote }: props) {
+
+    const [stars, setStars] = useState<Array<boolean>>([]);
     const totalStars = 5;
 
     function init() {
 
-        const starsArray = [];
+        const starsArray: boolean[] = [];
 
         let i = 0;
         for (i = 0; i < count; i++)
@@ -30,13 +36,12 @@ export default function RatingStars({ count, handleVote, isRatingEnabled }) {
                 <thead>
                     <tr>
                         {stars.map((star, index) =>
-                            <td>{isRatingEnabled ?
-                                <RatingStar
+                            <td> 
+                                 <RatingStar
                                     key={index}
                                     isEmpty={star}
                                     handleVote={() => handleVote(index + 1)}
-                                /> :
-                                <RatingStar isEmpty={star} />}
+                                />
                             </td>)}
                     </tr>
                 </thead>

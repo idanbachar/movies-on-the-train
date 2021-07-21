@@ -5,13 +5,30 @@ import DatePicker from "react-datepicker";
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-export default function MovieForm({ handler, titleLabel, movie }) {
+type movie = {
+    id: string,
+    title: string,
+    overview: string,
+    poster_path: string,
+    release_date: string,
+    director: string,
+    categories: string,
+    ratingStars: number
+}
+
+type props = {
+    handler: (arg0: movie) => void,
+    titleLabel: string,
+    movie?: movie
+}
+
+export default function MovieForm({ handler, titleLabel, movie }: props) {
 
     const [id, setId] = useState(movie === undefined ? uuidv4() : movie.id);
     const [title, setTitle] = useState(movie === undefined ? '' : movie.title);
     const [overview, setOverview] = useState(movie === undefined ? '' : movie.overview);
     const [poster_path, setPosterPath] = useState(movie === undefined ? '' : movie.poster_path);
-    const [release_date, setReleaseDate] = useState(movie === undefined ? new Date() : new Date(movie.release_date));
+    const [release_date, setReleaseDate] = useState<Date>(movie === undefined ? new Date() : new Date(movie.release_date));
     const [director, setDirector] = useState(movie === undefined ? '' : movie.director);
     const [categories, setCategories] = useState(movie === undefined ? '' : movie.categories);
     const [ratingStarCount, setRatingStarCount] = useState(movie === undefined ? 0 : movie.ratingStars)
@@ -85,7 +102,7 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                 release_date: release_date.toISOString().split('T')[0],
                 director,
                 categories,
-                ratingStars: ratingStarCount
+                ratingStars: ratingStarCount,
             })
         }
     };
@@ -102,8 +119,8 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
-                        <Form.Text className="text-muted">
-                            <font color="red">{validateTitleMessage}</font>
+                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                            {validateTitleMessage}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -115,8 +132,8 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                             value={overview}
                             onChange={(e) => setOverview(e.target.value)}
                         />
-                        <Form.Text className="text-muted">
-                            <font color="red">{validatOverviewMessage}</font>
+                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                            {validatOverviewMessage}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -127,8 +144,8 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                             value={director}
                             onChange={(e) => setDirector(e.target.value)}
                         />
-                        <Form.Text className="text-muted">
-                            <font color="red">{validateDirectorMessage}</font>
+                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                            {validateDirectorMessage}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -139,8 +156,8 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                             value={categories}
                             onChange={(e) => setCategories(e.target.value)}
                         />
-                        <Form.Text className="text-muted">
-                            <font color="red">{validateDirectorMessage}</font>
+                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                            {validateDirectorMessage}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -151,8 +168,8 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                             value={poster_path}
                             onChange={(e) => setPosterPath(e.target.value)}
                         />
-                        <Form.Text className="text-muted">
-                            <font color="red">{validatePosterPathMessage}</font>
+                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                            {validatePosterPathMessage}
                         </Form.Text>
                         <br />
                         <Form.Text className="text-muted">
@@ -168,7 +185,7 @@ export default function MovieForm({ handler, titleLabel, movie }) {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Movie Release Date</Form.Label>
                         <br />
-                        <DatePicker selected={release_date} onChange={(date) => setReleaseDate(date)} />
+                        <DatePicker selected={release_date} onChange={(date: Date) => setReleaseDate(date)} />
                     </Form.Group>
                     <Button variant="primary" onClick={validateFields}>
                         {titleLabel}!

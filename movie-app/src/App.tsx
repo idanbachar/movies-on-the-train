@@ -25,7 +25,7 @@ export default function App() {
 
   useEffect(() => {
 
-    if (sessionStorage.key("movies") === null)
+    if (sessionStorage.getItem("movies") === null)
       fetchMovies();
     else {
       dispatch({

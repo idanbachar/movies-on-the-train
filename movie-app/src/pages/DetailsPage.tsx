@@ -4,21 +4,43 @@ import MovieCardDetailed from '../components/Movie/MovieCardDetailed/MovieCardDe
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
+
+type movie = {
+    id: string,
+    title: string,
+    overview: string,
+    poster_path: string,
+    release_date: string,
+    director: string,
+    categories: string,
+    ratingStars: number
+}
+
 export default function DetailsPage() {
 
-    const params = useParams();
-    const movies = useSelector(state => state.movies);
-    const [movie, setMovie] = useState();
+    const defaultMovieValues = {
+        id: "0",
+        title: "",
+        overview: "",
+        poster_path: "",
+        release_date: "",
+        director: "",
+        categories: "",
+        ratingStars: 0,
+        isRatingEnabled: false
+    }
+
+    const params = useParams<{ movieId?: string }>();
+    const movies = useSelector((state: any) => state.movies);
+    const [movie, setMovie] = useState(defaultMovieValues);
 
     const OMDB_API_KEY = "1b7c2d93";
 
     const getCurrentMovie = async () => {
 
         // get current movie data from redux:
-        const current = movies
-            .find(movie =>
-                movie.id == params.movieId
-            );
+        const current = movies.find((movie: movie) =>
+            movie.id == params.movieId);
 
         // get missing data (director, categories) from other omdb api:
         if (current !== undefined) {
@@ -35,7 +57,6 @@ export default function DetailsPage() {
         }
     }
 
-
     useEffect(() => {
 
         getCurrentMovie();
@@ -44,8 +65,8 @@ export default function DetailsPage() {
 
     return (
         <>
-            <h1 align="center">Movie Details</h1>
             <div className="row">
+                <h1>Movie Details</h1>
                 <Link
                     to="/"
                     className="btn btn-danger">

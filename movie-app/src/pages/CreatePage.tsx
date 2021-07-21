@@ -3,15 +3,27 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import MovieForm from '../components/Form/MovieForm';
 
+type movie = {
+    id: string,
+    title: string,
+    overview: string,
+    poster_path: string,
+    release_date: string,
+    director: string,
+    categories: string,
+    ratingStars: number
+}
+
 export default function CreatePage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleCreate = (createdMovie) => {
+    const handleCreate = (createdMovie: movie) => {
         dispatch({
             type: 'CREATE',
-            payload: createdMovie
+            payload: [],
+            new: createdMovie
         })
 
         history.push("/");
@@ -19,7 +31,9 @@ export default function CreatePage() {
 
     return (
         <>
-            <h1 align="center">Create Movie</h1>
+            <div className="row">
+                <h1>Create Movie</h1>
+            </div>
             <div className="container">
                 <MovieForm
                     handler={handleCreate}

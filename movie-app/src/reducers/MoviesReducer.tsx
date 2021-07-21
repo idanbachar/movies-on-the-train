@@ -1,6 +1,32 @@
-const initialState = [];
 
-const MoviesReducer = (state = initialState, action) => {
+
+type movie = {
+    id: string,
+    title: string,
+    poster_path: string,
+    ratingStars: number,
+    director: string,
+    categories: string,
+    overview: string,
+    release_date: string
+}
+
+type props = {
+    state: movie[],
+    action: {
+        type: string,
+        payload: movie[],
+        new: movie
+    }
+}
+
+type action = {
+    type: string,
+    payload: movie[],
+    new: movie
+}
+
+export default function MoviesReducer(state: movie[] = [], action: action) {
 
     switch (action.type) {
         case 'INIT':
@@ -16,12 +42,12 @@ const MoviesReducer = (state = initialState, action) => {
             sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
         case 'GET_FROM_SESSION':
-            state = JSON.parse(sessionStorage.getItem("movies"));
+            state = JSON.parse(sessionStorage.getItem("movies") || "{}");
             return state;
         case 'EDIT':
-            const updated = state.map(movie =>
-                movie.id == action.payload.id ?
-                    action.payload :
+            const updated = state.map((movie) =>
+                movie.id == action.new.id ?
+                    action.new :
                     movie);
             state = updated;
             sessionStorage.setItem("movies", JSON.stringify(state));
@@ -29,10 +55,9 @@ const MoviesReducer = (state = initialState, action) => {
         default:
             return state;
         case 'CREATE':
-            state.push(action.payload);
+            state.push(action.new);
             sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
     }
 }
 
-export default MoviesReducer;

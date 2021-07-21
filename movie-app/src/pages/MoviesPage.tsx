@@ -3,14 +3,25 @@ import { useSelector } from 'react-redux';
 import MovieCard from '../components/Movie/MovieCard/MovieCard';
 import { Link } from 'react-router-dom';
 
+type movie = {
+    id: string,
+    title: string,
+    poster_path: string,
+    ratingStars: number,
+    director: string,
+    categories: string,
+    overview: string,
+    release_date: string
+}
+
 export default function MoviesPage() {
 
-    const movies = useSelector(state => state.movies);
+    const movies = useSelector((state: any) => state.movies);
 
     return (
         <>
-            <h1 align="center">Movies On The Train</h1>
             <div className="row">
+                <h1>Movies On The Train</h1>
                 <Link
                     to="/create"
                     className="btn btn-danger"
@@ -19,7 +30,7 @@ export default function MoviesPage() {
                 </Link>
             </div>
             <div className="container">
-                {movies.map(movie => {
+                {movies.map((movie: movie) => {
                     return (
                         <MovieCard
                             key={movie.id}

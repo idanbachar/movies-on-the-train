@@ -4,11 +4,23 @@ import { Link } from "react-router-dom";
 import RatingStars from '../RatingStars/RatingStars';
 import './MovieCardDetailed.css'
 
-export default function MovieCardDetailed({ id, title, description, image, release_date, director, categories, ratingStarCount, isRatingEnabled }) {
+type props = {
+    id: string,
+    title: string,
+    description: string,
+    image: string,
+    release_date: string,
+    director: string,
+    categories: string,
+    ratingStarCount: number,
+    isRatingEnabled: boolean
+}
+
+export default function MovieCardDetailed({ id, title, description, image, release_date, director, categories, ratingStarCount, isRatingEnabled }: props) {
 
     const dispatch = useDispatch();
 
-    function handleVote(ratingStars) {
+    function handleVote(ratingStars?: number) {
         const updated = {
             id: id,
             title: title,
@@ -22,7 +34,8 @@ export default function MovieCardDetailed({ id, title, description, image, relea
 
         dispatch({
             type: 'EDIT',
-            payload: updated
+            payload: [],
+            new: updated
         })
     }
 

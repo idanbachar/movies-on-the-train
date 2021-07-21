@@ -4,28 +4,54 @@ import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import MovieForm from '../components/Form/MovieForm';
 
+type movie = {
+    id: string,
+    title: string,
+    overview: string,
+    poster_path: string,
+    release_date: string,
+    director: string,
+    categories: string,
+    ratingStars: number
+}
+
 export default function EditPage() {
 
+
+    const defaultMovieValues = {
+        id: "0",
+        title: "",
+        overview: "",
+        poster_path: "",
+        release_date: "",
+        director: "",
+        categories: "",
+        ratingStars: 0,
+        isRatingEnabled: false
+    }
+
     const dispatch = useDispatch();
-    const params = useParams();
-    const movies = useSelector(state => state.movies);
-    const [movie, setMovie] = useState();
+    const params = useParams<{ movieId?: string }>();
+    const movies = useSelector((state: any) => state.movies);
+    const [movie, setMovie] = useState<movie>(defaultMovieValues);
     const history = useHistory();
+
 
     const getCurrentMovie = () => {
 
         const current = movies
-            .find(movie =>
+            .find((movie: movie) =>
                 movie.id == params.movieId
             );
 
         setMovie(current);
     }
 
-    const handleEdit = (editedMovie) => {
+    const handleEdit = (editedMovie: movie) => {
         dispatch({
             type: 'EDIT',
-            payload: editedMovie
+            payload: [],
+            new: editedMovie
         })
 
         history.push(`/details/${editedMovie.id}`);
@@ -35,13 +61,15 @@ export default function EditPage() {
 
         getCurrentMovie();
 
-    }, [movies])
+    }, [movie, movies])
 
     return (
         <>
-            <h1 align="center">Edit Movie</h1>
+            <div className="row">
+                <h1>Edit Movie</h1>
+            </div>
             <div className="container">
-                {movie !== undefined ?
+                {movie.id !== "0" ?
                     <MovieForm
                         handler={handleEdit}
                         titleLabel="Edit"

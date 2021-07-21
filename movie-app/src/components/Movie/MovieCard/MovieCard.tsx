@@ -3,7 +3,22 @@ import { Link } from "react-router-dom";
 import RatingStars from '../RatingStars/RatingStars';
 import './MovieCard.css'
 
-export default function MovieCard({ id, title, description, image, release_date, ratingStarCount, isRatingEnabled }) {
+type props = {
+    id: string,
+    title: string,
+    description: string,
+    image: string,
+    release_date: string,
+    ratingStarCount: number,
+    isRatingEnabled: boolean
+}
+
+export default function MovieCard({ id, title, description, image, release_date, ratingStarCount, isRatingEnabled }: props) {
+
+    const handleVote = (number : number) =>{
+
+        console.log(number);
+    }
 
     return (
         <div className="card">
@@ -17,6 +32,7 @@ export default function MovieCard({ id, title, description, image, release_date,
                     <RatingStars
                         count={ratingStarCount}
                         isRatingEnabled={isRatingEnabled}
+                        handleVote={() => handleVote}
                     />
                     <div className="user">
                         <div className="card-info">
