@@ -8,7 +8,7 @@ export default function DetailsPage() {
 
     const params = useParams();
     const movies = useSelector(state => state.movies);
-    const [movie, setMovie] = useState(null);
+    const [movie, setMovie] = useState();
 
     const getCurrentMovie = () => {
 
@@ -38,7 +38,7 @@ export default function DetailsPage() {
                 </Link>
             </div>
             <div className="container">
-                {movie !== null ?
+                {movie !== undefined ?
                     <MovieCardDetailed
                         id={movie.id}
                         title={movie.title}

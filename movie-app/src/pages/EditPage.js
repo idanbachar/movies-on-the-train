@@ -9,7 +9,7 @@ export default function EditPage() {
     const dispatch = useDispatch();
     const params = useParams();
     const movies = useSelector(state => state.movies);
-    const [movie, setMovie] = useState(null);
+    const [movie, setMovie] = useState();
     const history = useHistory();
 
     const getCurrentMovie = () => {
@@ -42,7 +42,7 @@ export default function EditPage() {
         <>
             <h1 align="center">Edit Movie</h1>
             <div className="container">
-                {movie !== null ?
+                {movie !== undefined ?
                     <Edit
                         id={movie.id}
                         title={movie.title}
