@@ -28,6 +28,7 @@ export default function MoviesPage() {
                             image={movie.poster_path}
                             release_date={movie.release_date}
                             ratingStarCount={movie.ratingStars}
+                            isRatingEnabled={false}
                         />
                     )
                 })}

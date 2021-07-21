@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RatingStar from '../RatingStar/RatingStar';
 
-export default function RatingStars({ count }) {
+export default function RatingStars({ count, handleVote, isRatingEnabled }) {
 
     const [stars, setStars] = useState([]);
     const totalStars = 5;
@@ -22,19 +22,20 @@ export default function RatingStars({ count }) {
 
     useEffect(() => {
         init();
-    }, [])
+    }, [count])
 
     return (
         <>
             <table>
                 <tr>
-                    {stars.map(star =>
-                        <td>
+                    {stars.map((star, index) =>
+                        <td>{isRatingEnabled ?
                             <RatingStar
                                 isEmpty={star}
-                            />
-                        </td>
-                    )}
+                                handleVote={() => handleVote(index + 1)}
+                            /> :
+                            <RatingStar isEmpty={star} />}
+                        </td>)}
                 </tr>
             </table>
 

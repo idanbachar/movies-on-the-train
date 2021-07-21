@@ -46,6 +46,7 @@ export default function DetailsPage() {
                         image={movie.poster_path}
                         release_date={movie.release_date}
                         ratingStarCount={movie.ratingStars}
+                        isRatingEnabled={true}
                     /> : null}
             </div>
         </>
