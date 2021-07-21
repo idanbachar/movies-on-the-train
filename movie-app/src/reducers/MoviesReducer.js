@@ -8,7 +8,7 @@ const MoviesReducer = (state = initialState, action) => {
             sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
         case 'GET_SESSION':
-            state =  JSON.parse(sessionStorage.getItem("movies"));
+            state = JSON.parse(sessionStorage.getItem("movies"));
             return state;
         case 'EDIT':
             const updated = state.map(movie =>
@@ -19,6 +19,10 @@ const MoviesReducer = (state = initialState, action) => {
             sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
         default:
+            return state;
+        case 'CREATE':
+            state.push(action.payload);                
+            sessionStorage.setItem("movies", JSON.stringify(state));
             return state;
     }
 }

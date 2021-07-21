@@ -6,10 +6,10 @@ export default function CreatePage() {
 
     const dispatch = useDispatch();
 
-    const handleCreate = (editedMovie) => {
+    const handleCreate = (createdMovie) => {
         dispatch({
             type: 'CREATE',
-            payload: editedMovie
+            payload: createdMovie
         })
     }
 

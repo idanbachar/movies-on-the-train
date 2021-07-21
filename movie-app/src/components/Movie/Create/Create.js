@@ -3,13 +3,14 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import DatePicker from "react-datepicker";
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Create({ handleCreate }) {
 
-    const [id, setId] = useState('');
+    const [id, setId] = useState(uuidv4());
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
+    const [overview, setOverview] = useState('');
+    const [poster_path, setPosterPath] = useState('');
     const [release_date, setReleaseDate] = useState(new Date());
 
     return (
@@ -34,8 +35,8 @@ export default function Create({ handleCreate }) {
                             type="text"
                             as="textarea"
                             placeholder="Enter movie description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={overview}
+                            onChange={(e) => setOverview(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -44,8 +45,8 @@ export default function Create({ handleCreate }) {
                         <Form.Control
                             type="text"
                             placeholder="Enter movie cover image"
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
+                            value={poster_path}
+                            onChange={(e) => setPosterPath(e.target.value)}
                         />
                         <br />
                         <Form.Text className="text-muted">
@@ -53,7 +54,7 @@ export default function Create({ handleCreate }) {
                         </Form.Text>
                         <br />
                         <img
-                            src={image}
+                            src={poster_path}
                             alt={title}
                             width={150}
                         />
@@ -66,9 +67,9 @@ export default function Create({ handleCreate }) {
                     <Button variant="primary" onClick={() => handleCreate({
                         id,
                         title,
-                        description,
-                        image,
-                        release_date
+                        overview,
+                        poster_path,
+                        release_date: release_date.toISOString().split('T')[0]
                     })}>
                         Create!
                     </Button>
