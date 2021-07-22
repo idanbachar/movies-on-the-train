@@ -1,25 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import DatePicker from "react-datepicker";
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-
-type movie = {
-    id: string,
-    title: string,
-    overview: string,
-    poster_path: string,
-    release_date: string,
-    director: string,
-    categories: string,
-    ratingStarsCount: number
-}
+import { Movie } from '../Movie/Movie';
 
 type props = {
-    handler: (arg0: movie) => void,
+    handler: (arg0: Movie) => void,
     titleLabel: string,
-    movie?: movie
+    movie?: Movie
 }
 
 export default function MovieForm({ handler, titleLabel, movie }: props) {

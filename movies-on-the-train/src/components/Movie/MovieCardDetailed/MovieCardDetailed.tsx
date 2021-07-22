@@ -1,21 +1,10 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
+import { Movie } from '../Movie';
 import RatingStars from '../RatingStars/RatingStars';
 import './MovieCardDetailed.css'
 
-type props = {
-    movie: {
-        id: string,
-        title: string,
-        overview: string,
-        poster_path: string,
-        release_date: string,
-        director: string,
-        categories: string,
-        ratingStarsCount: number
-    }
-}
+type props = { movie: Movie }
 
 export default function MovieCardDetailed({ movie }: props) {
 

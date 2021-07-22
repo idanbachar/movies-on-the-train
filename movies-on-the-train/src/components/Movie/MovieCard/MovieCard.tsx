@@ -1,20 +1,9 @@
-import React from 'react';
 import { Link } from "react-router-dom";
+import { Movie } from '../Movie';
 import RatingStars from '../RatingStars/RatingStars';
 import './MovieCard.css'
 
-type props = {
-    movie: {
-        id: string,
-        title: string,
-        overview: string,
-        poster_path: string,
-        release_date: string,
-        director: string,
-        categories: string,
-        ratingStarsCount: number
-    }
-}
+type props = { movie: Movie }
 
 export default function MovieCard({ movie }: props) {
 

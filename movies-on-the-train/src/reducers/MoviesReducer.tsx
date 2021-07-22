@@ -1,15 +1,6 @@
-type movie = {
-    id: string,
-    title: string,
-    overview: string,
-    poster_path: string,
-    release_date: string,
-    director: string,
-    categories: string,
-    ratingStarsCount: number
-}
+import { Movie } from "../components/Movie/Movie";
 
-export default function MoviesReducer(state: movie[] = [], action: { type: string, payload: movie[], new: movie }) {
+export default function MoviesReducer(state: Movie[] = [], action: { type: string, payload: Movie[], new: Movie }) {
 
     switch (action.type) {
         case 'INIT':

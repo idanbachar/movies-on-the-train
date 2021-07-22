@@ -1,25 +1,14 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import MovieForm from '../components/Form/MovieForm';
-
-type movie = {
-    id: string,
-    title: string,
-    overview: string,
-    poster_path: string,
-    release_date: string,
-    director: string,
-    categories: string,
-    ratingStarsCount: number
-}
+import { Movie } from '../components/Movie/Movie';
 
 export default function CreatePage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleCreate = (createdMovie: movie) => {
+    const handleCreate = (createdMovie: Movie) => {
         dispatch({
             type: 'CREATE',
             payload: [],

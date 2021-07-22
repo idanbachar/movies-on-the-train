@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MovieCardDetailed from '../components/Movie/MovieCardDetailed/MovieCardDetailed';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-
-type movie = {
-    id: string,
-    title: string,
-    overview: string,
-    poster_path: string,
-    release_date: string,
-    director: string,
-    categories: string,
-    ratingStarsCount: number
-}
+import { Movie } from '../components/Movie/Movie';
 
 export default function DetailsPage() {
 
@@ -23,11 +13,11 @@ export default function DetailsPage() {
     const movies = useSelector((state: any) => state.movies);
     const defaultMovieValues = { id: "", title: "", overview: "", poster_path: "", release_date: "", director: "", categories: "", ratingStarsCount: 0 }
 
-    const [movie, setMovie] = useState<movie>(defaultMovieValues);
+    const [movie, setMovie] = useState<Movie>(defaultMovieValues);
 
     const getCurrentMovie = async () => {
         // get current movie data from redux:
-        const current = movies.find((movie: movie) =>
+        const current = movies.find((movie: Movie) =>
             movie.id == params.movieId);
 
         // get missing data (director, categories) from other omdb api:

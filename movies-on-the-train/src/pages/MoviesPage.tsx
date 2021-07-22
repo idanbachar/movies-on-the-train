@@ -1,18 +1,7 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import MovieCard from '../components/Movie/MovieCard/MovieCard';
 import { Link } from 'react-router-dom';
-
-type movie = {
-    id: string,
-    title: string,
-    overview: string,
-    poster_path: string,
-    release_date: string,
-    director: string,
-    categories: string,
-    ratingStarsCount: number
-}
+import { Movie } from '../components/Movie/Movie';
 
 export default function MoviesPage() {
 
@@ -30,7 +19,7 @@ export default function MoviesPage() {
                 </Link>
             </div>
             <div className="container">
-                {movies.map((movie: movie) =>
+                {movies.map((movie: Movie) =>
                     <MovieCard
                         movie={movie}
                     />)}

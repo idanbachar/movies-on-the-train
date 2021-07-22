@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import MovieForm from '../components/Form/MovieForm';
-
-type movie = {
-    id: string,
-    title: string,
-    overview: string,
-    poster_path: string,
-    release_date: string,
-    director: string,
-    categories: string,
-    ratingStarsCount: number
-}
+import { Movie } from '../components/Movie/Movie';
 
 export default function EditPage() {
 
@@ -23,18 +13,18 @@ export default function EditPage() {
     const movies = useSelector((state: any) => state.movies);
     const defaultMovieValues = { id: "", title: "", overview: "", poster_path: "", release_date: "", director: "", categories: "", ratingStarsCount: 0 }
 
-    const [movie, setMovie] = useState<movie>(defaultMovieValues);
+    const [movie, setMovie] = useState<Movie>(defaultMovieValues);
 
     const getCurrentMovie = () => {
 
-        const current = movies.find((movie: movie) =>
+        const current = movies.find((movie: Movie) =>
             movie.id == params.movieId);
 
         if (current !== undefined)
             setMovie(current);
     }
 
-    const handleEdit = (editedMovie: movie) => {
+    const handleEdit = (editedMovie: Movie) => {
         dispatch({
             type: 'EDIT',
             payload: [],
