@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Movie } from '../Movie/Movie';
+import './MovieForm.css';
 
 type props = {
     handler: (arg0: Movie) => void,
@@ -100,94 +101,96 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
     };
 
     return (
-        <div className="detailed-card">
-            <div className="card-body">
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter movie title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                        <Form.Text style={{ color: 'red' }}>
-                            {validateTitleMessage}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            type="text"
-                            as="textarea"
-                            placeholder="Enter movie description"
-                            value={overview}
-                            onChange={(e) => setOverview(e.target.value)}
-                        />
-                        <Form.Text style={{ color: 'red' }}>
-                            {validatOverviewMessage}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Director</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter movie director"
-                            value={director}
-                            onChange={(e) => setDirector(e.target.value)}
-                        />
-                        <Form.Text style={{ color: 'red' }}>
-                            {validateDirectorMessage}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Categories</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter movie categories"
-                            value={categories}
-                            onChange={(e) => setCategories(e.target.value)}
-                        />
-                        <Form.Text style={{ color: 'red' }}>
-                            {validateCategoriesMessage}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Image (from URL)</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter movie cover image"
-                            value={poster_path}
-                            onChange={(e) => setPosterPath(e.target.value)}
-                        />
-                        <Form.Text style={{ color: 'red' }}>
-                            {validatePosterPathMessage}
-                        </Form.Text>
-                        <br />
-                        <Form.Text className="text-muted">
-                            Preview image:
-                        </Form.Text>
-                        <br />
-                        {/* <img
+        <div className="container">
+            <div className="edit">
+                <div className="edit-body">
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter movie title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                            <Form.Text style={{ color: 'red' }}>
+                                {validateTitleMessage}
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                                type="text"
+                                as="textarea"
+                                placeholder="Enter movie description"
+                                value={overview}
+                                onChange={(e) => setOverview(e.target.value)}
+                            />
+                            <Form.Text style={{ color: 'red' }}>
+                                {validatOverviewMessage}
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Director</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter movie director"
+                                value={director}
+                                onChange={(e) => setDirector(e.target.value)}
+                            />
+                            <Form.Text style={{ color: 'red' }}>
+                                {validateDirectorMessage}
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Categories</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter movie categories"
+                                value={categories}
+                                onChange={(e) => setCategories(e.target.value)}
+                            />
+                            <Form.Text style={{ color: 'red' }}>
+                                {validateCategoriesMessage}
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Image (from URL)</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter movie cover image"
+                                value={poster_path}
+                                onChange={(e) => setPosterPath(e.target.value)}
+                            />
+                            <Form.Text style={{ color: 'red' }}>
+                                {validatePosterPathMessage}
+                            </Form.Text>
+                            <br />
+                            <Form.Text className="text-muted">
+                                Preview image:
+                            </Form.Text>
+                            <br />
+                            <img
                             src={poster_path}
                             alt=""
                             width={150}
-                        /> */}
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Movie Release Date</Form.Label>
-                        <br />
-                        <DatePicker selected={release_date} onChange={(date: Date) => setReleaseDate(date)} />
-                    </Form.Group>
-                    <Button variant="primary" onClick={validateFields}>
-                        {titleLabel}!
-                    </Button>
-                    <Link
-                        className="btn btn-danger"
-                        to={titleLabel === "Edit" ? `/details/${id}` : `/`}>
-                        Cancel
-                    </Link>
-                </Form>
+                        />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Movie Release Date</Form.Label>
+                            <br />
+                            <DatePicker selected={release_date} onChange={(date: Date) => setReleaseDate(date)} />
+                        </Form.Group>
+                        <Button variant="primary" onClick={validateFields}>
+                            {titleLabel}!
+                        </Button>
+                        <Link
+                            className="btn btn-danger"
+                            to={titleLabel === "Edit" ? `/details/${id}` : `/`}>
+                            Cancel
+                        </Link>
+                    </Form>
+                </div>
             </div>
         </div>
     )

@@ -43,46 +43,48 @@ export default function MovieCardDetailed({ movie }: props) {
     }
 
     return (
-        <div className="detailed-card">
-            <div className="card-body">
-                <img
-                    src={movie.poster_path}
-                    alt="rover"
-                    width="230px"
-                />
-                <h2>{movie.title}</h2>
-                <p>{movie.overview}</p>
+        <div className="container">
+            <div className="edit">
+                <div className="edit-body">
+                    <img
+                        src={movie.poster_path}
+                        alt="rover"
+                        width="230px"
+                    />
+                    <h2>{movie.title}</h2>
+                    <p>{movie.overview}</p>
 
-                <p>Categories: <b>{movie.categories}</b></p>
-                <p>Director: {movie.director}</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <FavouriteButton
-                                    isFavourite={movie.isFavourite}
-                                />
-                            </td>
-                            <td>
-                                <Link
-                                    className="btn btn-primary"
-                                    to={`/edit/${movie.id}`}
-                                >
-                                    Edit
-                                </Link>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                <div className="user">
-                    <div className="card-info">
-                        <h6>Press the stars to rate!</h6>
-                        <RatingStars
-                            count={movie.ratingStarsCount}
-                            handleVote={handleVote}
-                        />
-                        <small>Release date: {movie.release_date}</small>
+                    <p>Categories: <b>{movie.categories}</b></p>
+                    <p>Director: {movie.director}</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <FavouriteButton
+                                        isFavourite={movie.isFavourite}
+                                    />
+                                </td>
+                                <td>
+                                    <Link
+                                        className="btn btn-primary"
+                                        to={`/edit/${movie.id}`}
+                                    >
+                                        Edit
+                                    </Link>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <div className="user">
+                        <div className="card-info">
+                            <h6>Press the stars to rate!</h6>
+                            <RatingStars
+                                count={movie.ratingStarsCount}
+                                handleVote={handleVote}
+                            />
+                            <small>Release date: {movie.release_date}</small>
+                        </div>
                     </div>
                 </div>
             </div>
