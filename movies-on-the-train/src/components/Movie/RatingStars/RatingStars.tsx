@@ -3,11 +3,10 @@ import RatingStar from '../RatingStar/RatingStar';
 
 type props = {
     count: number,
-    isRatingEnabled: boolean
-    handleVote: (starVote?: number) => void
+    handleVote: (starVote: number) => void
 }
 
-export default function RatingStars({ count, isRatingEnabled, handleVote }: props) {
+export default function RatingStars({ count, handleVote }: props) {
 
     const [stars, setStars] = useState<Array<boolean>>([]);
     const totalStars = 5;
@@ -36,9 +35,8 @@ export default function RatingStars({ count, isRatingEnabled, handleVote }: prop
                 <thead>
                     <tr>
                         {stars.map((star, index) =>
-                            <td> 
-                                 <RatingStar
-                                    key={index}
+                            <td>
+                                <RatingStar
                                     isEmpty={star}
                                     handleVote={() => handleVote(index + 1)}
                                 />

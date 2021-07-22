@@ -11,7 +11,7 @@ type movie = {
     release_date: string,
     director: string,
     categories: string,
-    ratingStars: number
+    ratingStarsCount: number
 }
 
 export default function CreatePage() {

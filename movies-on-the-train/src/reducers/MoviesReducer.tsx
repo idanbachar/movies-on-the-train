@@ -1,32 +1,15 @@
-
-
 type movie = {
     id: string,
     title: string,
+    overview: string,
     poster_path: string,
-    ratingStars: number,
+    release_date: string,
     director: string,
     categories: string,
-    overview: string,
-    release_date: string
+    ratingStarsCount: number
 }
 
-type props = {
-    state: movie[],
-    action: {
-        type: string,
-        payload: movie[],
-        new: movie
-    }
-}
-
-type action = {
-    type: string,
-    payload: movie[],
-    new: movie
-}
-
-export default function MoviesReducer(state: movie[] = [], action: action) {
+export default function MoviesReducer(state: movie[] = [], action: { type: string, payload: movie[], new: movie }) {
 
     switch (action.type) {
         case 'INIT':
@@ -34,7 +17,7 @@ export default function MoviesReducer(state: movie[] = [], action: action) {
             for (let i = 0; i < payload.length; i++) {
                 const posterPath = payload[i].poster_path;
                 payload[i].poster_path = `https://www.themoviedb.org/t/p/w220_and_h330_face/${posterPath}`;
-                payload[i].ratingStars = 0;
+                payload[i].ratingStarsCount = 0;
                 payload[i].director = "";
                 payload[i].categories = ""
             }

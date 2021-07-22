@@ -12,39 +12,26 @@ type movie = {
     release_date: string,
     director: string,
     categories: string,
-    ratingStars: number
+    ratingStarsCount: number
 }
 
 export default function EditPage() {
 
-
-    const defaultMovieValues = {
-        id: "0",
-        title: "",
-        overview: "",
-        poster_path: "",
-        release_date: "",
-        director: "",
-        categories: "",
-        ratingStars: 0,
-        isRatingEnabled: false
-    }
-
     const dispatch = useDispatch();
     const params = useParams<{ movieId?: string }>();
-    const movies = useSelector((state: any) => state.movies);
-    const [movie, setMovie] = useState<movie>(defaultMovieValues);
     const history = useHistory();
+    const movies = useSelector((state: any) => state.movies);
+    const defaultMovieValues = { id: "", title: "", overview: "", poster_path: "", release_date: "", director: "", categories: "", ratingStarsCount: 0 }
 
+    const [movie, setMovie] = useState<movie>(defaultMovieValues);
 
     const getCurrentMovie = () => {
 
-        const current = movies
-            .find((movie: movie) =>
-                movie.id == params.movieId
-            );
+        const current = movies.find((movie: movie) =>
+            movie.id == params.movieId);
 
-        setMovie(current);
+        if (current !== undefined)
+            setMovie(current);
     }
 
     const handleEdit = (editedMovie: movie) => {
@@ -58,10 +45,8 @@ export default function EditPage() {
     }
 
     useEffect(() => {
-
         getCurrentMovie();
-
-    }, [movie, movies])
+    }, [movies, movie])
 
     return (
         <>
@@ -69,7 +54,7 @@ export default function EditPage() {
                 <h1>Edit Movie</h1>
             </div>
             <div className="container">
-                {movie.id !== "0" ?
+                {movie.id !== "" ?
                     <MovieForm
                         handler={handleEdit}
                         titleLabel="Edit"

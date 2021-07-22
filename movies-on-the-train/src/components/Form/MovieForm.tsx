@@ -13,7 +13,7 @@ type movie = {
     release_date: string,
     director: string,
     categories: string,
-    ratingStars: number
+    ratingStarsCount: number
 }
 
 type props = {
@@ -31,7 +31,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
     const [release_date, setReleaseDate] = useState<Date>(movie === undefined ? new Date() : new Date(movie.release_date));
     const [director, setDirector] = useState(movie === undefined ? '' : movie.director);
     const [categories, setCategories] = useState(movie === undefined ? '' : movie.categories);
-    const [ratingStarCount, setRatingStarCount] = useState(movie === undefined ? 0 : movie.ratingStars)
+    const [ratingStarsCount, setRatingStarsCount] = useState(movie === undefined ? 0 : movie.ratingStarsCount)
 
     const [validateTitleMessage, setValidateTitleMessage] = useState('');
     const [validatOverviewMessage, setValidateOverviewMessage] = useState('');
@@ -102,7 +102,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                 release_date: release_date.toISOString().split('T')[0],
                 director,
                 categories,
-                ratingStars: ratingStarCount,
+                ratingStarsCount,
             })
         }
     };

@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 type movie = {
     id: string,
     title: string,
+    overview: string,
     poster_path: string,
-    ratingStars: number,
+    release_date: string,
     director: string,
     categories: string,
-    overview: string,
-    release_date: string
+    ratingStarsCount: number
 }
 
 export default function MoviesPage() {
@@ -30,20 +30,10 @@ export default function MoviesPage() {
                 </Link>
             </div>
             <div className="container">
-                {movies.map((movie: movie) => {
-                    return (
-                        <MovieCard
-                            key={movie.id}
-                            id={movie.id}
-                            title={movie.title}
-                            description={movie.overview}
-                            image={movie.poster_path}
-                            release_date={movie.release_date}
-                            ratingStarCount={movie.ratingStars}
-                            isRatingEnabled={false}
-                        />
-                    )
-                })}
+                {movies.map((movie: movie) =>
+                    <MovieCard
+                        movie={movie}
+                    />)}
             </div>
         </>
     )

@@ -5,31 +5,32 @@ import RatingStars from '../RatingStars/RatingStars';
 import './MovieCardDetailed.css'
 
 type props = {
-    id: string,
-    title: string,
-    description: string,
-    image: string,
-    release_date: string,
-    director: string,
-    categories: string,
-    ratingStarCount: number,
-    isRatingEnabled: boolean
+    movie: {
+        id: string,
+        title: string,
+        overview: string,
+        poster_path: string,
+        release_date: string,
+        director: string,
+        categories: string,
+        ratingStarsCount: number
+    }
 }
 
-export default function MovieCardDetailed({ id, title, description, image, release_date, director, categories, ratingStarCount, isRatingEnabled }: props) {
+export default function MovieCardDetailed({ movie }: props) {
 
     const dispatch = useDispatch();
 
     function handleVote(ratingStars?: number) {
         const updated = {
-            id: id,
-            title: title,
-            overview: description,
-            poster_path: image,
-            release_date: release_date,
-            director: director,
-            categories: categories,
-            ratingStars: ratingStars
+            id: movie.id,
+            title: movie.title,
+            overview: movie.overview,
+            poster_path: movie.poster_path,
+            release_date: movie.release_date,
+            director: movie.director,
+            categories: movie.categories,
+            ratingStarsCount: ratingStars
         }
 
         dispatch({
@@ -43,25 +44,26 @@ export default function MovieCardDetailed({ id, title, description, image, relea
         <div className="detailed-card">
             <div className="card-body">
                 <img
-                    src={image}
+                    src={movie.poster_path}
                     alt="rover"
                     width="230px"
                 />
-                <h2>{title}</h2>
-                <p>{description}</p>
-                <p>Categories: <b>{categories}</b></p>
-                <p>Director: {director}</p>
+                <h2>{movie.title}</h2>
+                <p>{movie.overview}</p>
+                <p>Categories: <b>{movie.categories}</b></p>
+                <p>Director: {movie.director}</p>
                 <div className="user">
                     <div className="card-info">
                         <h6>Press the stars to rate!</h6>
                         <RatingStars
-                            count={ratingStarCount}
+                            count={movie.ratingStarsCount}
                             handleVote={handleVote}
-                            isRatingEnabled={isRatingEnabled} />
-                        <small>Release date: {release_date}</small>
+                        />
+                        <small>Release date: {movie.release_date}</small>
                         <Link
-                            to={`/edit/${id}`}
-                            className="btn btn-primary">
+                            className="btn btn-primary"
+                            to={`/edit/${movie.id}`}
+                        >
                             Edit
                         </Link>
                     </div>
