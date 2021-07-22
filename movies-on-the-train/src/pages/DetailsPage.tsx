@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MovieCardDetailed from '../components/Movie/MovieCardDetailed/MovieCardDetailed';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { Movie } from '../components/Movie/Movie';
 
 export default function DetailsPage() {
@@ -48,12 +47,6 @@ export default function DetailsPage() {
         <>
             <div className="row">
                 <h1>Movie Details</h1>
-                <Link
-                    className="btn btn-danger"
-                    to="/"
-                >
-                    Back
-                </Link>
             </div>
             <div className="container">
                 {movie.id !== "" ?

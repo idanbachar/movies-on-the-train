@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import MoviesPage from './pages/MoviesPage';
 import DetailsPage from './pages/DetailsPage';
 import EditPage from './pages/EditPage';
-import './App.css';
 import CreatePage from './pages/CreatePage';
 import FavouriteMoviesPage from './pages/FavouriteMoviesPage';
+import NavBar from './components/NavBar/NavBar';
+import './App.css';
 
 export default function App() {
 
@@ -38,6 +39,7 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <NavBar />
         <Switch>
           <Route
             path="/"

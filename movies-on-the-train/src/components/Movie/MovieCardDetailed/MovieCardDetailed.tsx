@@ -10,6 +10,19 @@ export default function MovieCardDetailed({ movie }: props) {
 
     const dispatch = useDispatch();
 
+    type props = { isFavourite: boolean }
+
+    function FavouriteButton({ isFavourite }: props) {
+        return (
+            <button
+                className={"btn btn-" + (isFavourite ? "danger" : "success")}
+                onClick={() => handleFavourite(!isFavourite)}
+            >
+                {isFavourite ? "Remove Favourites" : "Add Favourites"}
+            </button>
+        )
+    }
+
     function handleVote(ratingStars?: number) {
 
         const updated = {
@@ -31,7 +44,7 @@ export default function MovieCardDetailed({ movie }: props) {
         })
     }
 
-    function addFavourites() {
+    function handleFavourite(isFavourite: boolean) {
 
         const updated = {
             id: movie.id,
@@ -42,7 +55,7 @@ export default function MovieCardDetailed({ movie }: props) {
             director: movie.director,
             categories: movie.categories,
             ratingStarsCount: movie.ratingStarsCount,
-            isFavourite: true
+            isFavourite: isFavourite
         }
 
         dispatch({
@@ -62,17 +75,29 @@ export default function MovieCardDetailed({ movie }: props) {
                 />
                 <h2>{movie.title}</h2>
                 <p>{movie.overview}</p>
+
                 <p>Categories: <b>{movie.categories}</b></p>
                 <p>Director: {movie.director}</p>
-                <button
-                    className="btn btn-success"
-                    onClick={addFavourites}
-                >
-                    Add Favourites
-                </button>
-                <Link to="/my-movies">
-                    My favourites
-                </Link>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <FavouriteButton
+                                    isFavourite={movie.isFavourite}
+                                />
+                            </td>
+                            <td>
+                                <Link
+                                    className="btn btn-primary"
+                                    to={`/edit/${movie.id}`}
+                                >
+                                    Edit
+                                </Link>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <div className="user">
                     <div className="card-info">
                         <h6>Press the stars to rate!</h6>
@@ -81,12 +106,6 @@ export default function MovieCardDetailed({ movie }: props) {
                             handleVote={handleVote}
                         />
                         <small>Release date: {movie.release_date}</small>
-                        <Link
-                            className="btn btn-primary"
-                            to={`/edit/${movie.id}`}
-                        >
-                            Edit
-                        </Link>
                     </div>
                 </div>
             </div>
