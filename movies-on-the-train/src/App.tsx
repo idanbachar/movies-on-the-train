@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import MoviesPage from './pages/MoviesPage';
 import DetailsPage from './pages/DetailsPage';
@@ -38,7 +38,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <NavBar />
         <Switch>
           <Route
@@ -62,7 +62,7 @@ export default function App() {
             component={FavouriteMoviesPage}
             exact />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
