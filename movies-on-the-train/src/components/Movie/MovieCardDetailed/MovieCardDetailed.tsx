@@ -11,6 +11,7 @@ export default function MovieCardDetailed({ movie }: props) {
     const dispatch = useDispatch();
 
     function handleVote(ratingStars?: number) {
+
         const updated = {
             id: movie.id,
             title: movie.title,
@@ -19,7 +20,29 @@ export default function MovieCardDetailed({ movie }: props) {
             release_date: movie.release_date,
             director: movie.director,
             categories: movie.categories,
-            ratingStarsCount: ratingStars
+            ratingStarsCount: ratingStars,
+            isFavourite: movie.isFavourite
+        }
+
+        dispatch({
+            type: 'EDIT',
+            payload: [],
+            new: updated
+        })
+    }
+
+    function addFavourites() {
+
+        const updated = {
+            id: movie.id,
+            title: movie.title,
+            overview: movie.overview,
+            poster_path: movie.poster_path,
+            release_date: movie.release_date,
+            director: movie.director,
+            categories: movie.categories,
+            ratingStarsCount: movie.ratingStarsCount,
+            isFavourite: true
         }
 
         dispatch({
@@ -41,6 +64,15 @@ export default function MovieCardDetailed({ movie }: props) {
                 <p>{movie.overview}</p>
                 <p>Categories: <b>{movie.categories}</b></p>
                 <p>Director: {movie.director}</p>
+                <button
+                    className="btn btn-success"
+                    onClick={addFavourites}
+                >
+                    Add Favourites
+                </button>
+                <Link to="/my-movies">
+                    My favourites
+                </Link>
                 <div className="user">
                     <div className="card-info">
                         <h6>Press the stars to rate!</h6>

@@ -11,6 +11,7 @@ export default function MoviesReducer(state: Movie[] = [], action: { type: strin
                 payload[i].ratingStarsCount = 0;
                 payload[i].director = "";
                 payload[i].categories = ""
+                payload[i].isFavourite = false;
             }
             state = action.payload;
             sessionStorage.setItem("movies", JSON.stringify(state));

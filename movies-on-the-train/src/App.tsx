@@ -6,6 +6,7 @@ import DetailsPage from './pages/DetailsPage';
 import EditPage from './pages/EditPage';
 import './App.css';
 import CreatePage from './pages/CreatePage';
+import FavouriteMoviesPage from './pages/FavouriteMoviesPage';
 
 export default function App() {
 
@@ -53,6 +54,10 @@ export default function App() {
           <Route
             path="/create"
             component={CreatePage}
+            exact />
+          <Route
+            path="/my-movies"
+            component={FavouriteMoviesPage}
             exact />
         </Switch>
       </BrowserRouter>

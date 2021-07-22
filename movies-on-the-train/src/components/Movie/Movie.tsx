@@ -6,5 +6,6 @@ export type Movie = {
     release_date: string,
     director: string,
     categories: string,
-    ratingStarsCount: number
+    ratingStarsCount: number,
+    isFavourite: boolean
 }

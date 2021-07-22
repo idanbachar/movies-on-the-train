@@ -21,7 +21,8 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
     const [release_date, setReleaseDate] = useState<Date>(movie === undefined ? new Date() : new Date(movie.release_date));
     const [director, setDirector] = useState(movie === undefined ? '' : movie.director);
     const [categories, setCategories] = useState(movie === undefined ? '' : movie.categories);
-    const [ratingStarsCount, setRatingStarsCount] = useState(movie === undefined ? 0 : movie.ratingStarsCount)
+    const [ratingStarsCount, setRatingStarsCount] = useState(movie === undefined ? 0 : movie.ratingStarsCount);
+    const [isFavourite, setIsFavourite] = useState(movie === undefined ? false : movie.isFavourite);
 
     const [validateTitleMessage, setValidateTitleMessage] = useState('');
     const [validatOverviewMessage, setValidateOverviewMessage] = useState('');
@@ -93,6 +94,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                 director,
                 categories,
                 ratingStarsCount,
+                isFavourite
             })
         }
     };
