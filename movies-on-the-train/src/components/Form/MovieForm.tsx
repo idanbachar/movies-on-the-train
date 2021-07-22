@@ -24,7 +24,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
     const [categories, setCategories] = useState(movie === undefined ? '' : movie.categories);
     const [ratingStarsCount, setRatingStarsCount] = useState(movie === undefined ? 0 : movie.ratingStarsCount);
     const [isFavourite, setIsFavourite] = useState(movie === undefined ? false : movie.isFavourite);
-    const [trailerKey, setTrailerKey] = useState(movie === undefined ? '' : movie.trailerKey);
+    const [trailerKey, setTrailerKey] = useState(movie === undefined ? '' : `https://www.youtube.com/watch?v=${movie.trailerKey}`);
 
     const [validateTitleMessage, setValidateTitleMessage] = useState('');
     const [validatOverviewMessage, setValidateOverviewMessage] = useState('');
