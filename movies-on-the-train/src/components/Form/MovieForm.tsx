@@ -97,7 +97,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                 categories,
                 ratingStarsCount,
                 isFavourite,
-                trailerKey
+                trailerKey: trailerKey.split("watch?v=")[1]
             })
         }
     };
@@ -157,6 +157,16 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Youtube Trailer Url (Optional)</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter movie youtube trailer"
+                            value={trailerKey}
+                            onChange={(e) => setTrailerKey(e.target.value)}
+                        />
+
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Image (from URL)</Form.Label>
                         <Form.Control
                             type="text"
@@ -194,7 +204,5 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                 </Form>
             </Card.Body>
         </Card>
-
-
     )
 }

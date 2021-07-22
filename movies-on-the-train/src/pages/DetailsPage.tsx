@@ -24,28 +24,28 @@ export default function DetailsPage() {
         if (current !== undefined) {
             if (current.director === "" && current.categories === "" && current.trailerKey === "") {
 
-                // The Movie Db API:
+                // OMDB API:
                 const omDbRes = await fetch(`https://www.omdbapi.com/?t=${current.title}&apikey=${OMDB_API_KEY}`);
                 const omDbData = await omDbRes.json();
                 current.director = omDbData.Director;
                 current.categories = omDbData.Genre;
 
-
+                // The Movie Db API:
                 const theMovieDbRes = await fetch(`https://api.themoviedb.org/3/movie/${current.id}/videos?api_key=${THE_MOVIE_DB_API_KEY}`)
                 const theMovieDbData = await theMovieDbRes.json();
                 current.trailerKey = theMovieDbData.results[0].key;
 
-                // update current movie with director, genre:
+                // update current movie with director, genre, trailerKey:
                 dispatch({
                     type: 'EDIT',
                     payload: [],
                     new: current
                 })
             }
+
             setMovie(current);
         }
     }
- 
 
     useEffect(() => {
         getCurrentMovie();
