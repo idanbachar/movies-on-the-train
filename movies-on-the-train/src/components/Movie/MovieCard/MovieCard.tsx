@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Movie } from '../Movie';
 import RatingStars from '../RatingStars/RatingStars';
 import Card from 'react-bootstrap/Card'
- 
+
 
 type props = { movie: Movie }
 

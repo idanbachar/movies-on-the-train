@@ -7,10 +7,11 @@ import { Movie } from '../components/Movie/Movie';
 export default function DetailsPage() {
 
     const OMDB_API_KEY = "1b7c2d93";
+    const THE_MOVIE_DB_API_KEY = "c1dc0c4c242380dce80741f82a86c998";
     const dispatch = useDispatch();
     const params = useParams<{ movieId?: string }>();
     const movies = useSelector((state: any) => state.movies);
-    const defaultMovieValues = { id: "", title: "", overview: "", poster_path: "", release_date: "", director: "", categories: "", ratingStarsCount: 0, isFavourite: false }
+    const defaultMovieValues = { id: "", title: "", overview: "", poster_path: "", release_date: "", director: "", categories: "", ratingStarsCount: 0, isFavourite: false, trailerKey: "" }
 
     const [movie, setMovie] = useState<Movie>(defaultMovieValues);
 
@@ -21,12 +22,18 @@ export default function DetailsPage() {
 
         // get missing data (director, categories) from other omdb api:
         if (current !== undefined) {
-            if (current.director === "" && current.categories === "") {
-                const res = await fetch(`https://www.omdbapi.com/?t=${current.title}&apikey=${OMDB_API_KEY}`);
-                const data = await res.json();
+            if (current.director === "" && current.categories === "" && current.trailerKey === "") {
 
-                current.director = data.Director;
-                current.categories = data.Genre;
+                // The Movie Db API:
+                const omDbRes = await fetch(`https://www.omdbapi.com/?t=${current.title}&apikey=${OMDB_API_KEY}`);
+                const omDbData = await omDbRes.json();
+                current.director = omDbData.Director;
+                current.categories = omDbData.Genre;
+
+
+                const theMovieDbRes = await fetch(`https://api.themoviedb.org/3/movie/${current.id}/videos?api_key=${THE_MOVIE_DB_API_KEY}`)
+                const theMovieDbData = await theMovieDbRes.json();
+                current.trailerKey = theMovieDbData.results[0].key;
 
                 // update current movie with director, genre:
                 dispatch({
@@ -38,6 +45,7 @@ export default function DetailsPage() {
             setMovie(current);
         }
     }
+ 
 
     useEffect(() => {
         getCurrentMovie();

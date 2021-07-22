@@ -7,5 +7,6 @@ export type Movie = {
     director: string,
     categories: string,
     ratingStarsCount: number,
-    isFavourite: boolean
+    isFavourite: boolean,
+    trailerKey: string
 }

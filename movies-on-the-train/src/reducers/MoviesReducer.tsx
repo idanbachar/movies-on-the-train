@@ -10,8 +10,9 @@ export default function MoviesReducer(state: Movie[] = [], action: { type: strin
                 payload[i].poster_path = `https://www.themoviedb.org/t/p/w220_and_h330_face/${posterPath}`;
                 payload[i].ratingStarsCount = 0;
                 payload[i].director = "";
-                payload[i].categories = ""
+                payload[i].categories = "";
                 payload[i].isFavourite = false;
+                payload[i].trailerKey = "";
             }
             state = action.payload;
             sessionStorage.setItem("movies", JSON.stringify(state));
