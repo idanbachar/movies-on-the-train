@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import MovieCard from '../components/Movie/MovieCard/MovieCard';
 import { Movie } from '../components/Movie/Movie';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function MoviesPage() {
 
@@ -11,13 +13,16 @@ export default function MoviesPage() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1>All Movies</h1>
             </div>
-            <div className="container">
+            <Row xs={1} md={5} className="g-5">
                 {movies.map((movie: Movie) =>
-                    <MovieCard
-                        key={movie.id}
-                        movie={movie}
-                    />)}
-            </div>
+                    <Col>
+                        <MovieCard
+                            key={movie.id}
+                            movie={movie}
+                        />
+                    </Col>
+                )}
+            </Row>
         </>
     )
 }

@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { Movie } from '../Movie';
 import RatingStars from '../RatingStars/RatingStars';
-import './MovieCardDetailed.css'
+import Card from 'react-bootstrap/Card'
 
 type props = { movie: Movie }
 
@@ -43,19 +43,18 @@ export default function MovieCardDetailed({ movie }: props) {
     }
 
     return (
-        <div className="container">
-            <div className="edit">
-                <div className="edit-body">
-                    <img
-                        src={movie.poster_path}
-                        alt="rover"
-                        width="230px"
-                    />
-                    <h2>{movie.title}</h2>
-                    <p>{movie.overview}</p>
-
-                    <p>Categories: <b>{movie.categories}</b></p>
-                    <p>Director: {movie.director}</p>
+        <Card>
+            <Card.Img variant="top" src={movie.poster_path} style={{ width: '300px' }} />
+            <Card.Body>
+                <Card.Title>{movie.title}</Card.Title>
+                <Card.Text>{movie.overview}</Card.Text>
+                <Card.Text>
+                    Categories: <b>{movie.categories}</b>
+                </Card.Text>
+                <Card.Text>
+                    Director: {movie.director}
+                </Card.Text>
+                <Card.Text>
                     <table>
                         <tbody>
                             <tr>
@@ -75,19 +74,18 @@ export default function MovieCardDetailed({ movie }: props) {
                             </tr>
                         </tbody>
                     </table>
-                    <br />
-                    <div className="user">
-                        <div className="card-info">
-                            <h6>Press the stars to rate!</h6>
-                            <RatingStars
-                                count={movie.ratingStarsCount}
-                                handleVote={handleVote}
-                            />
-                            <small>Release date: {movie.release_date}</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </Card.Text>
+                <Card.Text>
+                    <h6>Press the stars to rate!</h6>
+                    <RatingStars
+                        count={movie.ratingStarsCount}
+                        handleVote={handleVote}
+                    />
+                </Card.Text>
+                <Card.Footer>
+                    Release date: {movie.release_date}
+                </Card.Footer>
+            </Card.Body>
+        </Card>
     )
 }

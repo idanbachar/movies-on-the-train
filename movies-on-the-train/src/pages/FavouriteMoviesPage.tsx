@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux';
 import MovieCard from '../components/Movie/MovieCard/MovieCard';
 import { Movie } from '../components/Movie/Movie';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function FavouriteMoviesPage() {
 
@@ -22,13 +24,16 @@ export default function FavouriteMoviesPage() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1>My Favourite Movies</h1>
             </div>
-            <div className="container">
+            <Row xs={1} md={5} className="g-5">
                 {favourites.map((movie: Movie) =>
-                    <MovieCard
-                        key={movie.id}
-                        movie={movie}
-                    />)}
-            </div>
+                    <Col>
+                        <MovieCard
+                            key={movie.id}
+                            movie={movie}
+                        />
+                    </Col>
+                )}
+            </Row>
         </>
     )
 }
