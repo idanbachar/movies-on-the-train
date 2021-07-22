@@ -11,7 +11,7 @@ export default function EditPage() {
     const params = useParams<{ movieId?: string }>();
     const history = useHistory();
     const movies = useSelector((state: any) => state.movies);
-    const defaultMovieValues = { id: "", title: "", overview: "", poster_path: "", release_date: "", director: "", categories: "", ratingStarsCount: 0, isFavourite: false}
+    const defaultMovieValues = { id: "", title: "", overview: "", poster_path: "", release_date: "", director: "", categories: "", ratingStarsCount: 0, isFavourite: false }
 
     const [movie, setMovie] = useState<Movie>(defaultMovieValues);
 
@@ -40,8 +40,8 @@ export default function EditPage() {
 
     return (
         <>
-            <div className="row">
-                <h1>Edit Movie</h1>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h1>Edit Page</h1>
             </div>
             <div className="container">
                 {movie.id !== "" ?

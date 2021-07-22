@@ -19,7 +19,7 @@ export default function FavouriteMoviesPage() {
 
     return (
         <>
-            <div className="row">
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1>My Favourite Movies</h1>
             </div>
             <div className="container">

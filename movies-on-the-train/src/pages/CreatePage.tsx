@@ -20,8 +20,8 @@ export default function CreatePage() {
 
     return (
         <>
-            <div className="row">
-                <h1>Create Movie</h1>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h1>Create New Movie</h1>
             </div>
             <div className="container">
                 <MovieForm

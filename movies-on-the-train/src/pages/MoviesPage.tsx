@@ -8,7 +8,7 @@ export default function MoviesPage() {
 
     return (
         <>
-            <div className="row">
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1>All Movies</h1>
             </div>
             <div className="container">

@@ -45,7 +45,7 @@ export default function DetailsPage() {
 
     return (
         <>
-            <div className="row">
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1>Movie Details</h1>
             </div>
             <div className="container">
