@@ -74,7 +74,7 @@ export default function MovieCardDetailed({ movie }: props) {
                         </tr>
                     </tbody>
                 </table>
-
+                <br />
                 <div className="user">
                     <div className="card-info">
                         <h6>Press the stars to rate!</h6>

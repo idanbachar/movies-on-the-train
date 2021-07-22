@@ -37,6 +37,7 @@ export default function RatingStars({ count, handleVote }: props) {
                         {stars.map((star, index) =>
                             <td>
                                 <RatingStar
+                                    key={index}
                                     isEmpty={star}
                                     handleVote={() => handleVote(index + 1)}
                                 />

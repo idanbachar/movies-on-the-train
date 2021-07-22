@@ -25,6 +25,7 @@ export default function FavouriteMoviesPage() {
             <div className="container">
                 {favourites.map((movie: Movie) =>
                     <MovieCard
+                        key={movie.id}
                         movie={movie}
                     />)}
             </div>
