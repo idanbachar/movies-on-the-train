@@ -23,46 +23,23 @@ export default function MovieCardDetailed({ movie }: props) {
         )
     }
 
-    function handleVote(ratingStars?: number) {
-
-        const updated = {
-            id: movie.id,
-            title: movie.title,
-            overview: movie.overview,
-            poster_path: movie.poster_path,
-            release_date: movie.release_date,
-            director: movie.director,
-            categories: movie.categories,
-            ratingStarsCount: ratingStars,
-            isFavourite: movie.isFavourite
-        }
+    function updateMovieData(updatedMovie: Movie) {
 
         dispatch({
             type: 'EDIT',
             payload: [],
-            new: updated
+            new: updatedMovie
         })
     }
 
+    function handleVote(ratingStars?: number) {
+        movie.ratingStarsCount = ratingStars || 0;
+        updateMovieData(movie);
+    }
+
     function handleFavourite(isFavourite: boolean) {
-
-        const updated = {
-            id: movie.id,
-            title: movie.title,
-            overview: movie.overview,
-            poster_path: movie.poster_path,
-            release_date: movie.release_date,
-            director: movie.director,
-            categories: movie.categories,
-            ratingStarsCount: movie.ratingStarsCount,
-            isFavourite: isFavourite
-        }
-
-        dispatch({
-            type: 'EDIT',
-            payload: [],
-            new: updated
-        })
+        movie.isFavourite = isFavourite;
+        updateMovieData(movie);
     }
 
     return (
