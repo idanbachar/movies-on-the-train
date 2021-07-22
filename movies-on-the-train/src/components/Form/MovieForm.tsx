@@ -109,7 +109,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
-                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                        <Form.Text style={{ color: 'red' }}>
                             {validateTitleMessage}
                         </Form.Text>
                     </Form.Group>
@@ -122,7 +122,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                             value={overview}
                             onChange={(e) => setOverview(e.target.value)}
                         />
-                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                        <Form.Text style={{ color: 'red' }}>
                             {validatOverviewMessage}
                         </Form.Text>
                     </Form.Group>
@@ -134,7 +134,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                             value={director}
                             onChange={(e) => setDirector(e.target.value)}
                         />
-                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                        <Form.Text style={{ color: 'red' }}>
                             {validateDirectorMessage}
                         </Form.Text>
                     </Form.Group>
@@ -146,8 +146,8 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                             value={categories}
                             onChange={(e) => setCategories(e.target.value)}
                         />
-                        <Form.Text className="text-muted" style={{ color: 'red' }}>
-                            {validateDirectorMessage}
+                        <Form.Text style={{ color: 'red' }}>
+                            {validateCategoriesMessage}
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -158,7 +158,7 @@ export default function MovieForm({ handler, titleLabel, movie }: props) {
                             value={poster_path}
                             onChange={(e) => setPosterPath(e.target.value)}
                         />
-                        <Form.Text className="text-muted" style={{ color: 'red' }}>
+                        <Form.Text style={{ color: 'red' }}>
                             {validatePosterPathMessage}
                         </Form.Text>
                         <br />
